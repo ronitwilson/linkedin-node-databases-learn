@@ -5,8 +5,9 @@ async function run() {
   // const coinAPI = new CoinAPI();
   // return coinAPI.fetch();
   const mongoObj = new Mongo()
-  await mongoObj.getMax()
-  return ("connection done")
+  const maxPrice = await mongoObj.getMax()
+  // await mongoObj.insert()
+  return (maxPrice)
 }
 
 

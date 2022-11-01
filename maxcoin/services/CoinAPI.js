@@ -21,7 +21,7 @@ class CoinAPI {
   async fetch() {
     const today = new Date();
     const end = this.formatDate(today);
-    const start = this.formatDate(today.setFullYear(today.getFullYear() - 5));
+    const start = this.formatDate(today.setFullYear(today.getFullYear() - 1));
     const url = `${this.apiUrl}?start=${start}&end=${end}`;
     const response = await axios.get(url);
     return response.data;
