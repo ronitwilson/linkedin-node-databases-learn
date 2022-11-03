@@ -1,9 +1,18 @@
 #!/usr/bin/env node
 
 const http = require('http');
+const mongoose = require('mongoose')
 
 const config = require('../config');
 const App = require('../app');
+
+const connectToMongoose = () => {
+  return mongoose.connect(config.mongodb.Url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useCreateIndex: true,
+  })
+}
 
 /* Logic to start the application */
 const app = App(config);
@@ -44,5 +53,13 @@ function onListening() {
 }
 server.on('error', onError);
 server.on('listening', onListening);
+
+connectToMongoose().then(() => {
+  console.log("successfully connected to mongo")
+}
+).catch((error) => {
+  console.log("error in connecting to db ")
+  console.log(error)
+})
 
 server.listen(port);
