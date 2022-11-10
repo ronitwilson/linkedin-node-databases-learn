@@ -62,8 +62,9 @@ class MongoBackend {
 
     console.log("inserting data to mongo")
     console.time("insert")
-    await this.insert()
+    const insertResult = await this.insert()
     console.timeEnd("insert")
+    console.log(`inserted ${insertResult[0].affectedRows} docs into mysql`)
 
     console.log("getting the price")
     console.time("querying")
