@@ -3,10 +3,10 @@
 const http = require('http');
 const mongoose = require('mongoose')
 const Redis = require('ioredis')
+const { Sequelize} = require('sequelize');
 
 const config = require('../config');
 const App = require('../app');
-const { Sequelize } = require('sequelize');
 
 const connectToMongoose = () => {
   return mongoose.connect(config.mongodb.Url, {
@@ -28,12 +28,15 @@ const connectToRedis = () => {
 }
 
 const connectToMySql = () => {
-  const squelize = new Sequelize(config.mysql.options)
-  squelize.authenticate().then(() => {
+  const sequelize = new Sequelize(config.mysql.options)
+  sequelize.authenticate().then(() => {
     console.log("connected to mysql")
+    console.log("reaches here !!")
+    // const order = new OrderService(squelize)
   }).catch((error) => {
     console.log(`error in connection ${error}`)
   })
+  return sequelize
 }
 
 
