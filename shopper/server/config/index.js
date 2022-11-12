@@ -8,6 +8,16 @@ module.exports = {
   redis: {
     port: 7379,
     client: null
-  }
-
+  },
+  mysql: {
+    options: {
+      port: 3406,
+      host: "localhost",
+      database: "shopper",
+      dialect: "mysql",
+      username: "root",
+      password: "mypassword"
+    },
+    client: null
+  },
 };
